@@ -28,7 +28,7 @@ class NotebookDemo (ttk.Frame):
         inputsframe2 = ttk.Frame(relief='sunken', borderwidth='5')
         inputsframe2.grid(row=2)
         
-        
+        #NEED MOAR LIST COMPREHENSION
         #labels to indicate to user what each field will be
         self.inputlabels = ["Number of Teams:", "Team A:", "Team B:", "Team A Score:", "Team B Score:"]   
         

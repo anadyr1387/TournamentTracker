@@ -79,7 +79,7 @@ if __name__ == '__main__':
         
         
         
-        
+        # need to use list comprehension more often
         #check if this works
         teamlist1 = { 'Team%s' % (i + 1): TeamClass() for i in range(tempresult) }
         
