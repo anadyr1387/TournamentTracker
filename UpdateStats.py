@@ -9,6 +9,9 @@ Created on Nov 2, 2018
 #returns both teams win/loss
 #returns both teams Net score after game
 
+from TeamListGenerator import TeamListGenerator1
+
+
 def CheckStats(TeamAName, TeamBName, TeamAScore, TeamBScore):
     #print(TeamAName, TeamBName, TeamAScore, TeamBScore)
 
@@ -81,7 +84,7 @@ if __name__ == '__main__':
         
         # need to use list comprehension more often
         #check if this works
-        teamlist1 = { 'Team%s' % (i + 1): TeamClass() for i in range(tempresult) }
+        teamlist1 = TeamListGenerator1(tempresult)
         
 
         #for i in range(len(dictionarysequence)):

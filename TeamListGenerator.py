@@ -4,7 +4,9 @@ Created on Oct 27, 2018
 @author: Andy
 '''
 
+from TeamClass import TeamClass
 
+#no longer used
 def TeamListGenerator(InitialVariable, Teams, TeamStats):
     
     #if requsted amount of teams exceed current list size, delete extras
@@ -27,9 +29,11 @@ def TeamListGenerator(InitialVariable, Teams, TeamStats):
         
 
 
-
-
-
+# need to use list comprehension more often
+#list comprehension to generate dictionary of class object
+def TeamListGenerator1(UserTeams):
+    teamlist1 = { 'Team%s' % (i + 1): TeamClass() for i in range(UserTeams) }
+    return teamlist1
 
 
 
