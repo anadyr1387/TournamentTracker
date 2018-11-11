@@ -8,7 +8,7 @@ import sys
 import tkinter as tk
 from tkinter import ttk, StringVar
 from PIL import Image, ImageTk
-from TeamListGenerator import TeamListGenerator
+from TeamListGenerator import TeamListGenerator1
 from TeamClass import TeamClass
 from UpdateStats import CheckStats
 
@@ -136,32 +136,17 @@ class NotebookDemo (ttk.Frame):
         
         
     def _updateinfo(self, displayframe):
-
-        #get first combobox entry (number of teams requested)
-        #index 0 = teams to create
+        #confirm user teams to be created
         self.tempresult = self.labelinputs[0].get()
         
-        #initialize dictionary name identities of user requested size
-        self.dictionarysequence = [None]*int(self.tempresult)
-        
-        #populate with default team names into sequencer
-        for i in range(int(self.tempresult)):
-            self.dictionarysequence[i] = ('Team'+str(i+1))
-            
-        #print('dictionary sequencer = ',self.dictionarysequence)
-        
-        #create dict teamlist with team names from sequencer
-        self.teamlist1 = dict.fromkeys(self.dictionarysequence, TeamClass())
+        #generate amount of teams based on user input
+        #teamlist 1 = dict of class objects
+        self.teamlist1 = TeamListGenerator1(int(self.tempresult))
         print(self.teamlist1)
-
-        #config comboboxes to allow for selection of existing teams.
-        #index 0 = team selection
-        #index 1 = team a
-        #index 2 = team b
-        #index 3 = comments, currently unused
+        
+        #update information on team list
         self._updatetable(displayframe)
-        self.labelinputs[1].config(values=self.dictionarysequence)
-        self.labelinputs[2].config(values=self.dictionarysequence)
+
         
         
         
@@ -185,19 +170,19 @@ class NotebookDemo (ttk.Frame):
 
             #4 times the amount of labels are being generated here
             #need to fix, runs slow
-            b = ttk.Label(displayframe, text= str(self.dictionarysequence[i]), background = 'yellow')
+            b = ttk.Label(displayframe, text= str('Team%s' % (i + 1)), background = 'yellow')
             b.grid(row=i, column=0, sticky = 'w', padx = '5')
                             
                 #team wins
-            b = ttk.Label(displayframe, text= str(self.teamlist1[self.dictionarysequence[i]].teamwins), background = 'yellow')
+            b = ttk.Label(displayframe, text= str(self.teamlist1['Team%s' % (i + 1)].teamwins), background = 'yellow')
             b.grid(row=i, column=1, sticky = 'w', padx = '5')
                             
                 #team losses
-            b = ttk.Label(displayframe, text= str(self.teamlist1[self.dictionarysequence[i]].teamlosses), background = 'yellow')
+            b = ttk.Label(displayframe, text= str(self.teamlist1['Team%s' % (i + 1)].teamlosses), background = 'yellow')
             b.grid(row=i, column=2, sticky = 'w', padx = '5')
                             
                 #team score
-            b = ttk.Label(displayframe, text= str(self.teamlist1[self.dictionarysequence[i]].teamscore), background = 'yellow')
+            b = ttk.Label(displayframe, text= str(self.teamlist1['Team%s' % (i + 1)].teamscore), background = 'yellow')
             b.grid(row=i, column=3, sticky = 'w', padx = '5')
             
             

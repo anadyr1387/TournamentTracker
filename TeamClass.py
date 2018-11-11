@@ -16,6 +16,21 @@ class TeamClass():
         '''
         Constructor
         '''
+        
+        
+        
+class MatchResult():
+    #TeamAName, TeamBName, TeamAWin, TeamBWin, TeamAOutputNetScore, TeamBOutputNetScore, WinningTeam
+    
+    def __init__(self):
+        self.TeamAName = ''
+        self.TeamBName = ''
+        self.TeamAWin = ''
+        self.TeamBWin = ''
+        self.TeamAOutputNetScore = ''
+        self.TeamBOutputNetScore = ''
+        self.WinningTeam = ''
+        
 
         
 if __name__ == '__main__':
