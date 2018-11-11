@@ -44,15 +44,39 @@ def CheckStats(TeamAName, TeamBName, TeamAScore, TeamBScore):
     
     return outputreturnvalue
     
+    
 
+#module to test inputs, ensure proper formatting/usable
+
+#results to test:
+#If either Team A or Team B empty name, throw exception
+#If either Team A or Team B empty score, throw exception
+
+def CheckInputs(TeamAName, TeamBName, TeamAScore, TeamBScore):
+    if TeamAName is None or TeamBName is None or TeamAScore is None or TeamBScore is None:
+        #error code 1 = one of objects returned is None
+        return 1
+    
+    if TeamAName or TeamBName or TeamAScore or TeamBScore == '':
+        #error code 2 = one of objects is empty
+        return 2
+
+    if TeamAName == TeamBName:
+        #error code 3 = name matching incorrectly
+        return 3
+
+    if TeamAScore == TeamBScore:
+        #error code 4 = same score incorrect
+        return 4
+    
+    else:
+        return None
 
     
 if __name__ == '__main__':
-        tempresult = 5
-        dictionarysequence = []
-        
-        teamlist1 = TeamListGenerator1(tempresult)
-        print('teamlist1 = ', teamlist1)
+    print(CheckInputs('teama', 'teamb', 10, 15))
+
+
 
 
         

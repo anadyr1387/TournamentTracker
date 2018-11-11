@@ -31,7 +31,14 @@ class MatchResult():
         self.TeamBOutputNetScore = ''
         self.WinningTeam = ''
         
-
+class UserInputResult():
+    #number of teams, Team A, Team B, Team A Score, Team B Score
+    def __init__(self):
+        self.UserTeams =''
+        self.TeamA = ''
+        self.TeamB = ''
+        self.TeamAScore = ''
+        self.TeamBScore = ''
         
 if __name__ == '__main__':
     #assume user wants 7 teams

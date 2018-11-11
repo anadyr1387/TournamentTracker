@@ -10,6 +10,7 @@ from tkinter import ttk, StringVar
 from PIL import Image, ImageTk
 from TeamListGenerator import TeamListGenerator1
 from TeamClass import TeamClass
+from TeamClass import UserInputResult
 from UpdateStats import CheckStats
 
 class NotebookDemo (ttk.Frame):
@@ -94,8 +95,8 @@ class NotebookDemo (ttk.Frame):
         print('temlabelsinfo2 = ', self.teamlabelsinfo2)
         #print(self.teamlabelsinfo1[0][0])
         
-        self.userinputs = [None]*5
-        print('userinputs[3] = ', self.userinputs[3])
+        self.userinputs = UserInputResult
+        #print('userinputs[3] = ', self.userinputs[3])
         
         
         
@@ -136,13 +137,23 @@ class NotebookDemo (ttk.Frame):
         
         
     def _updateinfo(self, displayframe):
-        #confirm user teams to be created
-        self.tempresult = self.labelinputs[0].get()
+        #get all inputs
+        self._getinputs()
         
         #generate amount of teams based on user input
         #teamlist 1 = dict of class objects
-        self.teamlist1 = TeamListGenerator1(int(self.tempresult))
+        self.teamlist1 = TeamListGenerator1(int(self.userinputs.UserTeams))
         print(self.teamlist1)
+        
+        #get list from dict keys
+        self.labellist = list(self.teamlist1.keys())
+        
+        #update options for user to select teams to modify stats
+        #Team A options
+        self.labelinputs[1]['values'] = self.labellist
+        
+        #Team B options
+        self.labelinputs[2]['values'] = self.labellist
         
         #update information on team list
         self._updatetable(displayframe)
@@ -159,7 +170,7 @@ class NotebookDemo (ttk.Frame):
         
         
         #rows
-        for i in range(int(self.tempresult)):
+        for i in range(int(self.userinputs.UserTeams)):
             
             #columns
             #for j in range(4):
@@ -211,10 +222,10 @@ class NotebookDemo (ttk.Frame):
         self._getinputs()
         
         #get team A selection
-        print(self.userinputs[1])
+        print(self.userinputs.TeamA)
         
         #get team B selection
-        print(self.userinputs[2])
+        print(self.userinputs.TeamB)
         
                 
             
@@ -222,10 +233,10 @@ class NotebookDemo (ttk.Frame):
         print('updating all statistics')
         self._getinputs()
         #get team A score input
-        print(self.userinputs[3])
+        print(self.userinputs.TeamAScore)
         
         #get team B score input
-        print(self.userinputs[4])
+        print(self.userinputs.TeamBScore)
         
         
     def _updateteamlist(self):
@@ -235,10 +246,22 @@ class NotebookDemo (ttk.Frame):
         
         
     def _getinputs(self):
-        for i in range(len(self.labelinputs)):
-            print(i)
-            self.userinputs[i] = self.labelinputs[i].get()
-        print(self.userinputs)
+        #get amount of teams selected
+        self.userinputs.UserTeams = self.labelinputs[0].get()
+        
+        #get Team A selection
+        self.userinputs.TeamA = self.labelinputs[1].get()
+        
+        #get Team B selection
+        self.userinputs.TeamB = self.labelinputs[2].get()
+        
+        #get Team A Score
+        self.userinputs.TeamAScore = self.labelinputs[3].get()
+        
+        #get Team B Score
+        self.userinputs.TeamBScore = self.labelinputs[4].get()
+            
+        #print(self.userinputs)
         
         
 
